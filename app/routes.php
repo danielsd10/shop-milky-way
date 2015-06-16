@@ -13,5 +13,13 @@
 
 Route::get('/', function()
 {
-	return View::make('hello');
+	return View::make('index');
+});
+Route::get('/category', function()
+{
+	return View::make('category');
+});
+Route::get('/product', function()
+{
+	return View::make('product');
 });
