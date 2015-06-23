@@ -11,15 +11,6 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('index');
-});
-Route::get('/category', function()
-{
-	return View::make('category');
-});
-Route::get('/product', function()
-{
-	return View::make('product');
-});
+Route::get('/', 'ShopController@showIndex');
+Route::get('/category', 'ShopController@showCategory');
+Route::get('/product', 'ShopController@showProductDetail');
