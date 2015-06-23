@@ -4,17 +4,17 @@ class ShopController extends BaseController {
 
 	public function showIndex()
 	{
-		return View::make('index');
+		return View::make('shop.index');
 	}
 
 	public function showCategory()
 	{
-		return View::make('category');
+		return View::make('shop.category');
 	}
 
 	public function showProductDetail()
 	{
-		return View::make('product');
+		return View::make('shop.product');
 	}
 
 }
