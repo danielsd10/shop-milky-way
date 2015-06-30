@@ -14,3 +14,15 @@
 Route::get('/', 'ShopController@showIndex');
 Route::get('/category', 'ShopController@showCategory');
 Route::get('/product', 'ShopController@showProductDetail');
+
+/* Admin routes */
+Route::group(array('prefix' => 'admin'), function() {
+	Route::get('/', 'AdminController@showIndex');
+
+	Route::get('/categories', 'AdminController@showCategories');
+	Route::get('/categories/create', ['as' => 'createCategory', 'uses' => 'AdminController@createCategory']);
+	Route::get('/categories/{id}', 'AdminController@showCategory')->where('id', '[0-9]+');
+	Route::post('/categories', 'AdminController@saveCategory');
+	Route::post('/categories/{id}', 'AdminController@saveCategory')->where('id', '[0-9]+');
+	Route::delete('/categories', 'AdminController@deleteCategory');
+});
