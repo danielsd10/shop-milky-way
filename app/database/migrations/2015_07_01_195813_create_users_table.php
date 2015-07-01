@@ -13,11 +13,16 @@ class CreateUsersTable extends Migration {
 	public function up()
 	{
 		Schema::create('users', function($table){
+			// autoincrement
 			$table->increments('id');
+			// columns
 			$table->string('username');
 			$table->string('password');
 			$table->boolean('is_admin');
+			// timestamp
 			$table->timestamps();
+			// security token
+			$table->rememberToken();
 		});
 	}
 

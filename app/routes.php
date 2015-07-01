@@ -16,21 +16,28 @@ Route::get('/category', 'ShopController@showCategory');
 Route::get('/product', 'ShopController@showProductDetail');
 
 /* Admin routes */
-Route::group(array('prefix' => 'admin'), function() {
+Route::get('/login', function(){
+	return View::make('admin.login');
+});
+Route::post('/login', function(){
+	if(Auth::attempt(Input::only('username', 'password'))) {
+		return Redirect::intended('/admin');
+	} else {
+		return Redirect::back()
+			->withInput()
+			->with('error', "Invalid credentials");
+	}
+});
+Route::get('/logout', function(){
+	Auth::logout();
+	return Redirect::to('/admin')
+		->with('message', 'You are now logged out');
+});
+/*Route::filter('auth', function($route, $request) {
+	if (Auth::guest()) return Redirect::guest('/admin/login'); // /login url
+});*/
+Route::group(array('prefix' => 'admin', 'before' => 'auth'), function() {
 	Route::get('/', 'AdminController@showIndex');
-
-	Route::get('/login', function(){
-		return View::make('admin.login');
-	});
-	Route::post('/login', function(){
-		if(Auth::attempt(Input::only('username', 'password'))) {
-			return Redirect::intended('/admin/index');
-		} else {
-			return Redirect::back()
-				->withInput()
-				->with('error', "Invalid credentials");
-		}
-	});
 
 	Route::get('/categories', 'AdminController@showCategories');
 	Route::get('/categories/create', ['as' => 'createCategory', 'uses' => 'AdminController@createCategory']);

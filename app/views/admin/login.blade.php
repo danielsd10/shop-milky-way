@@ -39,7 +39,7 @@
                         <h3 class="panel-title">Iniciar sesión</h3>
                     </div>
                     <div class="panel-body">
-                        <form role="form" method="post" action="{{url('admin/login')}}">
+                        <form role="form" method="post" action="{{url('/login')}}">
                             <fieldset>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Usuario" name="username" type="text" autofocus>
