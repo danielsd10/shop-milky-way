@@ -24,5 +24,5 @@ Route::group(array('prefix' => 'admin'), function() {
 	Route::get('/categories/{id}', 'AdminController@showCategory')->where('id', '[0-9]+');
 	Route::post('/categories', 'AdminController@saveCategory');
 	Route::post('/categories/{id}', 'AdminController@saveCategory')->where('id', '[0-9]+');
-	Route::delete('/categories', 'AdminController@deleteCategory');
+	Route::delete('/categories/{id}', 'AdminController@deleteCategory')->where('id', '[0-9]+');
 });

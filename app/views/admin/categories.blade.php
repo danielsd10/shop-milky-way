@@ -44,8 +44,8 @@
 									<span class="fa fa-bars"></span>
 								</button>
 								<ul class="dropdown-menu">
-									<li><a href="#"><i class="fa fa-pencil-square-o"></i> Editar</a></li>
-									<li><a href="#"><i class="fa fa-trash-o"></i> Eliminar</a></li>
+									<li><a href="{{url('admin/categories/'.$category->id)}}" data-id=""><i class="fa fa-pencil-square-o"></i> Editar</a></li>
+									<li><a href="#delete" data-id=""><i class="fa fa-trash-o"></i> Eliminar</a></li>
 								</ul>
 							</div>
 						</td>
@@ -57,4 +57,12 @@
 			</div>
 		</div>
 	</div>
+@stop
+
+@section('script')
+    <script>
+        $(document).ready(function(){
+
+        });
+    </script>
 @stop

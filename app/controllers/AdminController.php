@@ -21,7 +21,7 @@ class AdminController extends BaseController {
 	public function showCategory($categoryId)
 	{
 		$category = Category::find($categoryId);
-		return View::make('admin.categories', ['category' => $category]);
+		return View::make('admin.categories-edit', ['category' => $category]);
 	}
 
 	public function saveCategory($categoryId = null)
