@@ -19,6 +19,19 @@ Route::get('/product', 'ShopController@showProductDetail');
 Route::group(array('prefix' => 'admin'), function() {
 	Route::get('/', 'AdminController@showIndex');
 
+	Route::get('/login', function(){
+		return View::make('admin.login');
+	});
+	Route::post('/login', function(){
+		if(Auth::attempt(Input::only('username', 'password'))) {
+			return Redirect::intended('/admin/index');
+		} else {
+			return Redirect::back()
+				->withInput()
+				->with('error', "Invalid credentials");
+		}
+	});
+
 	Route::get('/categories', 'AdminController@showCategories');
 	Route::get('/categories/create', ['as' => 'createCategory', 'uses' => 'AdminController@createCategory']);
 	Route::get('/categories/{id}', 'AdminController@showCategory')->where('id', '[0-9]+');
