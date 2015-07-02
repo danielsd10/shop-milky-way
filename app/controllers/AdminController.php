@@ -41,7 +41,8 @@ class AdminController extends BaseController {
 	{
 		$category = Category::find($categoryId);
 		$category->delete();
-		return Redirect::to('admin/categories');
+        $response = Response::make("", "204");
+		return $response;
 	}
 
 }
