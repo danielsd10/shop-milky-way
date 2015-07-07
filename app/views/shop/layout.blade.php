@@ -29,7 +29,7 @@
 	<body>
 
 		<!-- Navigation -->
-		@include('navbar');
+		@include('shop/navbar');
 
 
 		<!-- Page Content -->
@@ -39,7 +39,7 @@
 
 				<div class="col-md-3">
 					<!-- Categories menu -->
-					@include('categories-menu');
+					@include('shop/categories-menu');
 				</div>
 
 				<div class="col-md-9">
@@ -60,7 +60,7 @@
 
 			<!-- Footer -->
 			<footer>
-				@include('footer');
+				@include('shop/footer');
 			</footer>
 
 		</div>

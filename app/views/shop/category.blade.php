@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('shop/layout')
 
 @section('content')
 	<div class="row">
