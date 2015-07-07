@@ -41,7 +41,7 @@
 			<a href="{{url('/admin/categories')}}"><i class="fa fa-fw fa-tag"></i> Categorías</a>
 		</li>
 		<li>
-			<a href="{{url('/admin/')}}"><i class="fa fa-fw fa-cube"></i> Productos</a>
+			<a href="{{url('/admin/products')}}"><i class="fa fa-fw fa-cube"></i> Productos</a>
 		</li>
 		<li>
 			<a href="{{url('/admin/')}}"><i class="fa fa-fw fa-file-text"></i> Pedidos</a>

@@ -20,7 +20,7 @@ class CreateProductsTable extends Migration {
             $table->integer('category');
             $table->longText('description')->nullable();
             $table->string('image', 100)->nullable();
-            $table->decimal('price', 5, 2)->default(0);
+            $table->decimal('price', 8, 2)->default(0);
             $table->integer('rate')->default(0);
             // timestamp
             $table->timestamps();

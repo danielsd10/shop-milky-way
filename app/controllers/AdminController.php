@@ -45,4 +45,48 @@ class AdminController extends BaseController {
 		return $response;
 	}
 
+	public function showProducts()
+	{
+		$products = Product::with('category')->get();
+		return View::make('admin.products', ['products' => $products]);
+	}
+
+	public function createProduct()
+	{
+		$product = new Product;
+		$categories = Category::all();
+		return View::make('admin.products-edit', ['product' => $product, 'categories' => $categories]);
+	}
+
+	public function showProduct($productId)
+	{
+		$product = Product::find($productId);
+		$categories = Category::all();
+		return View::make('admin.products-edit', ['product' => $product, 'categories' => $categories]);
+	}
+
+	public function saveProduct($productId = null)
+	{
+		if(is_null($productId)){
+			$product = new Product();
+		} else {
+			$product = Product::find($productId);
+		}
+		$product->name = Input::get('name');
+		$product->category = Input::get('category');
+		$product->description = Input::get('description');
+		$product->image = Input::get('image');
+		$product->price = Input::get('price');
+		$product->save();
+		return Redirect::to('admin/products');
+	}
+
+	public function deleteProduct($productId)
+	{
+		$product = Product::find($productId);
+		$product->delete();
+		$response = Response::make("", "204");
+		return $response;
+	}
+
 }

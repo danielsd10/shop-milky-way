@@ -25,4 +25,11 @@ Route::group(array('prefix' => 'admin'), function() {
 	Route::post('/categories', 'AdminController@saveCategory');
 	Route::post('/categories/{id}', 'AdminController@saveCategory')->where('id', '[0-9]+');
 	Route::delete('/categories/{id}', 'AdminController@deleteCategory')->where('id', '[0-9]+');
+
+	Route::get('/products', 'AdminController@showProducts');
+	Route::get('/products/create', 'AdminController@createProduct');
+	Route::get('/products/{id}', 'AdminController@showProduct')->where('id', '[0-9]+');
+	Route::post('/products', 'AdminController@saveProduct');
+	Route::post('/products/{id}', 'AdminController@saveProduct')->where('id', '[0-9]+');
+	Route::delete('/products/{id}', 'AdminController@deleteProduct')->where('id', '[0-9]+');
 });
