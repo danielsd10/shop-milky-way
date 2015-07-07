@@ -12,8 +12,8 @@
 */
 
 Route::get('/', 'ShopController@showIndex');
-Route::get('/category', 'ShopController@showCategory');
-Route::get('/product', 'ShopController@showProductDetail');
+Route::get('/category/{id}', 'ShopController@showCategory')->where('id', '[0-9]+');
+Route::get('/product/{id}', 'ShopController@showProductDetail')->where('id', '[0-9]+');
 
 /* Admin routes */
 Route::group(array('prefix' => 'admin'), function() {

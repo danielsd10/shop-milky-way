@@ -5,19 +5,26 @@ class ShopController extends BaseController {
 	public function showIndex()
 	{
 		$categories = Category::all();
-		return View::make('shop.index', ['categories' => $categories]);
+		$products = Product::all();
+		return View::make('shop.index', ['categories' => $categories, 'products' => $products]);
 	}
 
-	public function showCategory()
+	public function showCategory($categoryId)
 	{
 		$categories = Category::all();
-		return View::make('shop.category', ['categories' => $categories]);
+		$selectedCategory = Category::find($categoryId);
+		$products = Product::where('category', '=', $categoryId)->get();
+		return View::make('shop.category', ['categories' => $categories,
+			'selectedCategory' => $selectedCategory, 'products' => $products]);
 	}
 
-	public function showProductDetail()
+	public function showProductDetail($productId)
 	{
 		$categories = Category::all();
-		return View::make('shop.product', ['categories' => $categories]);
+		$product = Product::find($productId);
+		$selectedCategory = Category::find($product->category);
+		return View::make('shop.product', ['categories' => $categories,
+			'product' => $product, 'selectedCategory' => $selectedCategory]);
 	}
 
 }
