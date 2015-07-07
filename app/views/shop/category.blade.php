@@ -30,7 +30,7 @@
 		@forelse ($products as $product)
 		<div class="col-sm-4 col-lg-4 col-md-4">
 			<div class="thumbnail">
-				<img src="img/{{$product->image}}" style="width: 320px; height: 150px" alt="">
+				<img src="{{asset('img/'.$product->image)}}" style="width: 320px; height: 150px" alt="">
 				<div class="caption">
 					<h4 class="pull-right">${{$product->price}}</h4>
 					<h4><a href="{{url('/product/'.$product->id)}}">{{$product->name}}</a>

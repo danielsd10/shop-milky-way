@@ -2,7 +2,7 @@
 
 @section('content')
 	<div class="thumbnail">
-		<img class="img-responsive" src="img/{{$product->image}}" alt="">
+		<img class="img-responsive" src="{{asset('img/'.$product->image)}}" alt="">
 		<div class="caption-full">
 			<h4 class="pull-right">${{$product->price}}</h4>
 			<h3>{{$product->name}}</h3>
