@@ -45,7 +45,7 @@
 								</button>
 								<ul class="dropdown-menu">
 									<li><a href="{{url('admin/categories/'.$category->id)}}" data-id=""><i class="fa fa-pencil-square-o"></i> Editar</a></li>
-									<li><a href="#delete" data-id=""><i class="fa fa-trash-o"></i> Eliminar</a></li>
+									<li><a href="#delete/{{$category->id}}" data-id="{{$category->id}}"><i class="fa fa-trash-o"></i> Eliminar</a></li>
 								</ul>
 							</div>
 						</td>
@@ -62,7 +62,20 @@
 @section('script')
     <script>
         $(document).ready(function(){
-
+            $("a[href^=#delete]").click(function(e){
+                var id = $(this).attr("data-id");
+                var row = $(this).parents("tr");
+                $.ajax({
+                    url: "/admin/categories/" + id,
+                    method: "DELETE",
+                    statusCode: {
+                        204: function() {
+                            row.remove();
+                        }
+                    }
+                });
+                e.preventDefault();
+            });
         });
     </script>
 @stop

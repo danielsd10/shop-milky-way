@@ -11,4 +11,9 @@ class Product extends Eloquent {
     // timestamps
     public $timestamps = true;
 
+	// categories relationship
+	public function category() {
+		return $this->belongsTo('Category', 'category');
+	}
+
 }

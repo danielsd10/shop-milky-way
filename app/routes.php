@@ -11,11 +11,12 @@
 |
 */
 
+/* Shop routes */
 Route::get('/', 'ShopController@showIndex');
-Route::get('/category', 'ShopController@showCategory');
-Route::get('/product', 'ShopController@showProductDetail');
+Route::get('/category/{id}', 'ShopController@showCategory')->where('id', '[0-9]+');
+Route::get('/product/{id}', 'ShopController@showProductDetail')->where('id', '[0-9]+');
 
-/* Admin routes */
+/* Authentication routes */
 Route::get('/login', function(){
 	return View::make('admin.login');
 });
@@ -33,9 +34,8 @@ Route::get('/logout', function(){
 	return Redirect::to('/admin')
 		->with('message', 'You are now logged out');
 });
-/*Route::filter('auth', function($route, $request) {
-	if (Auth::guest()) return Redirect::guest('/admin/login'); // /login url
-});*/
+
+/* Admin routes */
 Route::group(array('prefix' => 'admin', 'before' => 'auth'), function() {
 	Route::get('/', 'AdminController@showIndex');
 
@@ -45,4 +45,11 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth'), function() {
 	Route::post('/categories', 'AdminController@saveCategory');
 	Route::post('/categories/{id}', 'AdminController@saveCategory')->where('id', '[0-9]+');
 	Route::delete('/categories/{id}', 'AdminController@deleteCategory')->where('id', '[0-9]+');
+
+	Route::get('/products', 'AdminController@showProducts');
+	Route::get('/products/create', 'AdminController@createProduct');
+	Route::get('/products/{id}', 'AdminController@showProduct')->where('id', '[0-9]+');
+	Route::post('/products', 'AdminController@saveProduct');
+	Route::post('/products/{id}', 'AdminController@saveProduct')->where('id', '[0-9]+');
+	Route::delete('/products/{id}', 'AdminController@deleteProduct')->where('id', '[0-9]+');
 });
